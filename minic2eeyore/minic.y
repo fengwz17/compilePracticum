@@ -141,7 +141,6 @@ void yyerror(const char *message)
 { 
     extern int lineno;
     fprintf(stderr,"Syntax error at line %d: %s\n", lineno, message);
-    fprintf(stderr,"Current token: ");
     //printToken(yychar,tokenStr);
 
     exit(1);
@@ -162,13 +161,13 @@ static int yylex(void)
 
 int main(int argc, char** argv)
 {
-    if(argc > 1){
-        if(!(yyin = fopen(argv[1], "r"))){
-            perror(argv[1]);
-            return 1;
-        }
+    if(argc <= 1)
+    {
+      printf("error\n");
+      return 1;
     }
-    while(yylex() != 0);
+    
+    yyin = fopen(argv[1], "r");
     yyparse();
     return 0;
 }

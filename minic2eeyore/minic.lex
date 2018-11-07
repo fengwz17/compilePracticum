@@ -61,7 +61,6 @@ int yywrap(void){
 
 TokenType getToken(void){
 
-    static int firstTime = TRUE;
     TokenType currentToken;
 
     currentToken = yylex();
